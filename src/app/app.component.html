@@ -3,13 +3,12 @@
     <mat-tab-group>
       <mat-tab label="Gold">
         <form novalidate [formGroup]="form">
-          <mat-slide-toggle (change)="goldSelectionChanged($event)" [checked]="customGold">
-            Custom coin
-          </mat-slide-toggle>
-
-          <mat-form-field  *ngIf="!customGold">
+          <mat-form-field>
             <mat-label>Choose your coin</mat-label>
-            <mat-select [(value)]="selected" formControlName="type">
+            <mat-select [(value)]="selected" formControlName="type" (selectionChange)="selectedCoinChanged($event)">
+              <mat-option value="custom">
+                Custom coin
+              </mat-option>
               <mat-optgroup *ngFor="let group of coinGroups" [label]="group.name">
                 <mat-option *ngFor="let coin of group.coins" [value]="coin">
                   {{coin.name}}
@@ -19,21 +18,21 @@
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Coin Price</mat-label>
-            <input matInput class="price" type="number" placeholder="0" formControlName="coinPrice">
+            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinPrice">
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" *ngIf="customGold">
+          <mat-form-field class="example-full-width">
             <mat-label>Coin weight (g)</mat-label>
-            <input matInput class="price" type="number" placeholder="0" formControlName="coinWeight">
+            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinWeight" (change)="customCoinChanged($event)" step="0.01" min="0">
           </mat-form-field>
-          <mat-form-field class="example-full-width" *ngIf="customGold">
+          <mat-form-field class="example-full-width">
             <mat-label>Purity ‰</mat-label>
-            <input matInput class="price" type="number" placeholder="0" formControlName="coinPurity">
+            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinPurity" (change)="customCoinChanged($event)" min="0">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Gold spot Price</mat-label>
-            <input matInput class="price" type="number" placeholder="0" formControlName="goldSpotPrice">
+            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="goldSpotPrice">
           </mat-form-field>
           <div class="actions">
             <button color="primary" mat-raised-button type="submit" (click)="calculate()"
@@ -45,16 +44,8 @@
         <div>
           <div class="infos">
             <div class="info">
-              <label>Weight</label>
-              <div class="value">{{selected?.weight}} g</div>
-            </div>
-            <div class="info">
-              <label>Percent of gold</label>
-              <div class="value">{{selected?.titre}} ‰</div>
-            </div>
-            <div class="info">
               <label>Gold weight</label>
-              <div class="value">{{selected?.weight / 1000 * selected?.titre | number:'1.0-7'}} g</div>
+              <div class="value">{{form?.value?.coinWeight / 1000 * form?.value?.coinPurity | number:'1.0-7'}} g</div>
             </div>
           </div>
           <div class="results">

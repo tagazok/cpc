@@ -38,8 +38,8 @@ export class AppComponent {
       type: ['', Validators.required],
       coinPrice: ['', Validators.required],
       goldSpotPrice: ['', Validators.required],
-      coinWeight: ['0', Validators.required],
-      coinPurity: ['0', Validators.required]
+      coinWeight: ['', Validators.required],
+      coinPurity: ['', Validators.required]
     });
   }
 
@@ -158,23 +158,6 @@ export class AppComponent {
   ];
 
   calculate() {
-    if (this.customGold) {
-      this.calculateCustom();
-    } else {
-      this.calculateSelectedCoin();
-    }
-  }
-
-  calculateSelectedCoin() {
-    const formValues = this.form.value;
-    console.log(formValues);
-
-    this.results.goldWeight = formValues.type.weight / 1000 * formValues.type.titre;
-    this.results.atSpotPrice = this.results.goldWeight * formValues.goldSpotPrice / 31.1034768;
-    this.results.premiumPercent = formValues.coinPrice / this.results.atSpotPrice * 100 - 100;
-  }
-
-  calculateCustom() {
     const formValues = this.form.value;
     console.log(formValues);
 
@@ -187,8 +170,16 @@ export class AppComponent {
     return this.form.invalid;
   }
 
-  goldSelectionChanged(event) {
-    this.customGold = !this.customGold;
+  customCoinChanged(event) {
+    this.form.get('type').setValue('custom')
+  }
+
+  selectedCoinChanged(event) {
+    if (event.value === 'custom') {
+      return;
+    }
+    this.form.get('coinWeight').setValue(this.form.value.type.weight);
+    this.form.get('coinPurity').setValue(this.form.value.type.titre);
   }
 
   async getGoldPrice() {
