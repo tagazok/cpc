@@ -1,0 +1,53 @@
+.infos {
+    .info {
+        font-size: .9em;
+        color: rgb(138, 138, 138);
+    }
+}
+.bold {
+    font-weight: bold;
+}
+
+.label {
+    text-transform: capitalize;
+}
+
+.important {
+    color: red;
+}
+
+.results {
+    margin-top: 1.5em;
+}
+
+mat-card {
+    width: 500px;
+    max-width: 100%;
+}
+mat-form-field {
+    display: block;
+}
+
+.text-align-right {
+    text-align: right
+}
+
+form {
+    padding-top: 16px;
+}
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1.25em;
+    border-bottom: solid 1px #e6e6e6;
+    margin-bottom: 1em;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    label {
+        display: flex;
+        flex: 1;
+    }
+}

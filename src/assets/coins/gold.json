@@ -1,0 +1,114 @@
+{
+    "coins": [
+        {
+            "name": "French",
+            "coins": [
+                {
+                    "name": "Coq 10 Fr",
+                    "weight": 3.225,
+                    "titre": 900
+                },
+                {
+                    "name": "Coq 20 Fr",
+                    "weight": 6.45161,
+                    "titre": 900
+                },
+                {
+                    "name": "Napoléon 10 Fr",
+                    "weight": 3.225,
+                    "titre": 900
+                },
+                {
+                    "name": "Napoléon 20 Fr",
+                    "weight": 6.4516,
+                    "titre": 900
+                },
+                {
+                    "name": "Krugerrand",
+                    "weight": 33.93,
+                    "titre": 916.667
+                }
+            ]
+        },
+        {
+            "name": "USA",
+            "coins": [
+                {
+                    "name": "$5 Liberty / Indian head",
+                    "weight": 8.359,
+                    "titre": 900
+                },
+                {
+                    "name": "$10 Liberty / Indian head",
+                    "weight": 16.7185,
+                    "titre": 900
+                },
+                {
+                    "name": "$20 Liberty",
+                    "weight": 33.437,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "Bullion",
+            "coins": [
+                {
+                    "name": "American Buffalo 1/2oz",
+                    "weight": 15.552,
+                    "titre": 999.9
+                },
+                {
+                    "name": "American Eagle 1oz",
+                    "weight": 33.930,
+                    "titre": 916.7
+                },
+                {
+                    "name": "American Eagle 1/2oz",
+                    "weight": 16.965,
+                    "titre": 916.7
+                },
+                {
+                    "name": "Krugerrand 1oz",
+                    "weight": 33.930,
+                    "titre": 916.7
+                },
+                {
+                    "name": "Krugerrand 1/2oz",
+                    "weight": 16.965,
+                    "titre": 916.7
+                },
+                {
+                    "name": "Mapple Leaf 1oz",
+                    "weight": 31.10,
+                    "titre": 999.0
+                },
+                {
+                    "name": "Mapple Leaf 1/2oz",
+                    "weight": 15.55,
+                    "titre": 999.0
+                }
+            ]
+        },
+        {
+            "name": "Bars",
+            "coins": [
+                {
+                    "name": "5 grams",
+                    "weight": 5,
+                    "titre": 999.9
+                },
+                {
+                    "name": "10 grams",
+                    "weight": 10,
+                    "titre": 999.9
+                },
+                {
+                    "name": "20 grams",
+                    "weight": 20,
+                    "titre": 999.9
+                }
+            ]
+        }
+    ]
+}

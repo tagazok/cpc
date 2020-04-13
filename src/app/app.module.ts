@@ -12,16 +12,20 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { PrimeFormComponent } from './prime-form/prime-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PrimeFormComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+
     MatCardModule,
     MatSelectModule,
     MatFormFieldModule,
@@ -29,8 +33,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     FormsModule,
     MatTabsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatSlideToggleModule
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

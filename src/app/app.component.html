@@ -2,69 +2,10 @@
   <mat-card>
     <mat-tab-group>
       <mat-tab label="Gold">
-        <form novalidate [formGroup]="form">
-          <mat-form-field>
-            <mat-label>Choose your coin</mat-label>
-            <mat-select [(value)]="selected" formControlName="type" (selectionChange)="selectedCoinChanged($event)">
-              <mat-option value="custom">
-                Custom coin
-              </mat-option>
-              <mat-optgroup *ngFor="let group of coinGroups" [label]="group.name">
-                <mat-option *ngFor="let coin of group.coins" [value]="coin">
-                  {{coin.name}}
-                </mat-option>
-              </mat-optgroup>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Coin Price</mat-label>
-            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinPrice">
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width">
-            <mat-label>Coin weight (g)</mat-label>
-            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinWeight" (change)="customCoinChanged($event)" step="0.01" min="0">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Purity ‰</mat-label>
-            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinPurity" (change)="customCoinChanged($event)" min="0">
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width">
-            <mat-label>Gold spot Price</mat-label>
-            <input matInput class="text-align-right" type="number" placeholder="0" formControlName="goldSpotPrice">
-          </mat-form-field>
-          <div class="actions">
-            <button color="primary" mat-raised-button type="submit" (click)="calculate()"
-              [disabled]="shouldDisableButton()">
-              Calculate
-            </button>
-          </div>
-        </form>
-        <div>
-          <div class="infos">
-            <div class="info">
-              <label>Gold weight</label>
-              <div class="value">{{form?.value?.coinWeight / 1000 * form?.value?.coinPurity | number:'1.0-7'}} g</div>
-            </div>
-          </div>
-          <div class="results">
-            <div class="info">
-              <label>@ Spot price</label>
-              <div class="value">
-                {{results.atSpotPrice  | number:'1.0-1'}} €</div>
-            </div>
-            <div class="info">
-              <label>Premium</label>
-              <div class="value">
-                {{results.premiumPercent  | number:'1.0-2'}}
-                %</div>
-            </div>
-          </div>
-        </div>
+          <app-prime-form [price]="prices?.ask?.gold" [label]="'gold'"></app-prime-form>
       </mat-tab>
       <mat-tab label="Silver">
-        coucou
+        <app-prime-form [price]="prices?.ask?.silver" [label]="'silver'"></app-prime-form>
       </mat-tab>
     </mat-tab-group>
     <div class="info once">
