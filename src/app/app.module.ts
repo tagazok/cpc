@@ -12,6 +12,9 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
 import { PrimeFormComponent } from './prime-form/prime-form.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -33,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatTabsModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

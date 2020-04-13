@@ -4,16 +4,19 @@
             "name": "French",
             "coins": [
                 {
+                    "id": "10-francs-coq",
                     "name": "Coq 10 Fr",
                     "weight": 3.225,
                     "titre": 900
                 },
                 {
+                    "id": "20-francs-coq",
                     "name": "Coq 20 Fr",
                     "weight": 6.45161,
                     "titre": 900
                 },
                 {
+                    "id": "10-francs-napoleon",
                     "name": "Napoléon 10 Fr",
                     "weight": 3.225,
                     "titre": 900
@@ -23,11 +26,6 @@
                     "name": "Napoléon 20 Fr",
                     "weight": 6.4516,
                     "titre": 900
-                },
-                {
-                    "name": "Krugerrand",
-                    "weight": 33.93,
-                    "titre": 916.667
                 }
             ]
         },
@@ -35,18 +33,25 @@
             "name": "USA",
             "coins": [
                 {
-                    "name": "$5 Liberty / Indian head",
+                    "id": "5-usd-half-eagle",
+                    "name": "Half Eagle $5",
                     "weight": 8.359,
                     "titre": 900
                 },
                 {
-                    "name": "$10 Liberty / Indian head",
-                    "weight": 16.7185,
+                    "id": "20-usd-double-eagle",
+                    "name": "Double Eagle $20",
+                    "weight": 33.437,
                     "titre": 900
                 },
                 {
-                    "name": "$20 Liberty",
-                    "weight": 33.437,
+                    "name": "Indian head $5",
+                    "weight": 8.359,
+                    "titre": 900
+                },
+                {
+                    "name": "Indian head $10",
+                    "weight": 16.7185,
                     "titre": 900
                 }
             ]
@@ -54,6 +59,12 @@
         {
             "name": "Bullion",
             "coins": [
+                {
+                    "id": "1oz-buffalo",
+                    "name": "American Buffalo 1oz",
+                    "weight": 31.108,
+                    "titre": 999.9
+                },
                 {
                     "name": "American Buffalo 1/2oz",
                     "weight": 15.552,
@@ -70,6 +81,7 @@
                     "titre": 916.7
                 },
                 {
+                    "id": "1oz-krugerrand",
                     "name": "Krugerrand 1oz",
                     "weight": 33.930,
                     "titre": 916.7
@@ -80,6 +92,7 @@
                     "titre": 916.7
                 },
                 {
+                    "id": "1oz-maple-leaf",
                     "name": "Mapple Leaf 1oz",
                     "weight": 31.10,
                     "titre": 999.0

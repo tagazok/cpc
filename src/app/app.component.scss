@@ -18,3 +18,17 @@ mat-card {
     justify-content: flex-end;
     margin-top: 1em;
 }
+
+.footer {
+    color: #808080;
+    text-align: center;
+
+    .heart {
+    color: red;
+    }
+
+    a {
+        color: #3f51b5;
+        text-decoration: none;
+    }
+}
