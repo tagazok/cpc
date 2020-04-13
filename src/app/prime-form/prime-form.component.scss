@@ -51,3 +51,16 @@ form {
         flex: 1;
     }
 }
+
+.pictures {
+    display: flex;
+    width: 100%;
+
+    .picture {
+        flex: 1;
+
+        img {
+            width: 100%;
+        }
+    }
+}
