@@ -17,6 +17,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { PrimeFormComponent } from './prime-form/prime-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatTabsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

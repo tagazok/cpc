@@ -1,6 +1,36 @@
 {
     "coins": [
         {
+            "name": "Generic",
+            "coins": [
+                {
+                    "name": "1/25 oz",
+                    "weight": 1.244139,
+                    "titre": 999
+                },
+                {
+                    "name": "1/10 oz",
+                    "weight": 3.11035,
+                    "titre": 999
+                },
+                {
+                    "name": "1/4 oz",
+                    "weight": 7.775869,
+                    "titre": 999
+                },
+                {
+                    "name": "1/2 oz",
+                    "weight": 15.5517,
+                    "titre": 999
+                },
+                {
+                    "name": "1 oz",
+                    "weight": 31.1035,
+                    "titre": 999
+                }
+            ]
+        },
+        {
             "name": "French",
             "coins": [
                 {
