@@ -1,6 +1,36 @@
 {
     "coins": [
         {
+            "name": "Generic",
+            "coins": [
+                {
+                    "name": "1/25 oz",
+                    "weight": 1.244139,
+                    "titre": 999
+                },
+                {
+                    "name": "1/10 oz",
+                    "weight": 3.11035,
+                    "titre": 999
+                },
+                {
+                    "name": "1/4 oz",
+                    "weight": 7.775869,
+                    "titre": 999
+                },
+                {
+                    "name": "1/2 oz",
+                    "weight": 15.5517,
+                    "titre": 999
+                },
+                {
+                    "name": "1 oz",
+                    "weight": 31.1035,
+                    "titre": 999
+                }
+            ]
+        },
+        {
             "name": "French",
             "coins": [
                 {
@@ -13,6 +43,12 @@
                     "id": "20-francs-coq",
                     "name": "Coq 20 Fr",
                     "weight": 6.45161,
+                    "titre": 900
+                },
+                {
+                    "id": "5-francs-napoleon",
+                    "name": "Napoléon 5 Fr",
+                    "weight": 1.612,
                     "titre": 900
                 },
                 {
@@ -45,6 +81,11 @@
                     "titre": 900
                 },
                 {
+                    "name": "Indian head $2.5",
+                    "weight": 4.18,
+                    "titre": 900
+                },
+                {
                     "name": "Indian head $5",
                     "weight": 8.359,
                     "titre": 900
@@ -52,6 +93,41 @@
                 {
                     "name": "Indian head $10",
                     "weight": 16.7185,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name:": "Others",
+            "coins": [
+                {
+                    "id": "1.5-pesos",
+                    "name": "2.5 Pesos",
+                    "weight": 2.0833,
+                    "titre": 900
+                },
+                {
+                    "id": "1-ducat",
+                    "name": "1 Ducat Austria",
+                    "weight": 3.49,
+                    "titre": 986
+                },
+                {
+                    "id": "4-ducat-francois-joseph",
+                    "name": "4 Ducat Austria François Joseph 1er",
+                    "weight": 14,
+                    "titre": 986
+                },
+                {
+                    "id": "20-lire",
+                    "name": "20 Lire Italy",
+                    "weight": 6.45,
+                    "titre": 900
+                },
+                {
+                    "id": "5-rubles-russia",
+                    "name": "5 rubles Russia",
+                    "weight": 4.3,
                     "titre": 900
                 }
             ]
