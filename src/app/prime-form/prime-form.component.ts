@@ -31,6 +31,7 @@ export class PrimeFormComponent implements OnInit {
     goldWeight: 0,
     atSpotPrice: 0,
     premiumPercent: 0,
+    premium: 0,
     premiumPrice: 0
   };
 
@@ -61,24 +62,27 @@ export class PrimeFormComponent implements OnInit {
     const formValues = this.form.value;
     console.log(formValues);
 
-    this.results.goldWeight = formValues.coinWeight / 1000 * formValues.coinPurity;
-    this.results.atSpotPrice = this.results.goldWeight * formValues.spotPrice / 31.1034768;
     this.results.premiumPercent = formValues.coinPrice / this.results.atSpotPrice * 100 - 100;
+    this.results.premium = formValues.coinPrice - this.results.atSpotPrice;
   }
 
   shouldDisableButton() {
     return this.form.invalid;
   }
 
-  customCoinChanged(event) {
-    this.form.get('type').setValue('custom')
+  customCoinChanged(event: any) {
+    this.form.get('type')?.setValue('custom')
   }
 
-  selectedCoinChanged(event) {
+  selectedCoinChanged(event: any) {
     if (event.value === 'custom') {
       return;
     }
-    this.form.get('coinWeight').setValue(this.form.value.type.weight);
-    this.form.get('coinPurity').setValue(this.form.value.type.titre);
+    this.form.get('coinWeight')?.setValue(this.form.value.type.weight);
+    this.form.get('coinPurity')?.setValue(this.form.value.type.titre);
+
+    const formValues = this.form.value;
+    this.results.goldWeight = formValues.coinWeight / 1000 * formValues.coinPurity;
+    this.results.atSpotPrice = this.results.goldWeight * formValues.spotPrice / 31.1034768;
   }
 }
