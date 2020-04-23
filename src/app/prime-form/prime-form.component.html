@@ -1,5 +1,23 @@
 <form novalidate [formGroup]="form">
   <mat-form-field>
+    <input type="text"
+           matInput
+           placeholder="Coin"
+           formControlName="type"
+           required
+           [matAutocomplete]="autoGroup">
+      <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)="selectedCoinChanged($event)" [displayWith]="displayFn">
+        <mat-optgroup *ngFor="let group of coinGroupOptions |async" [label]="group.name">
+          <mat-option *ngFor="let coin of group.coins" [value]="coin">
+            {{coin.name}}
+          </mat-option>
+        </mat-optgroup>
+    </mat-autocomplete>
+  </mat-form-field>
+
+
+
+  <!-- <mat-form-field>
     <mat-label>Choose your coin</mat-label>
     <mat-select formControlName="type" (selectionChange)="selectedCoinChanged($event)">
       <mat-option value="custom">
@@ -11,25 +29,25 @@
         </mat-option>
       </mat-optgroup>
     </mat-select>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
+  </mat-form-field> -->
+  <mat-form-field>
     <mat-label>Coin Price (€)</mat-label>
     <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinPrice">
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field>
     <mat-label>Coin weight (g)</mat-label>
     <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinWeight"
       (change)="customCoinChanged($event)" step="0.01" min="0">
 
   </mat-form-field>
-  <mat-form-field class="example-full-width">
+  <mat-form-field>
     <mat-label>Purity (‰)</mat-label>
     <input matInput class="text-align-right" type="number" placeholder="0" formControlName="coinPurity"
       (change)="customCoinChanged($event)" min="0">
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field>
     <mat-label><span class="label">{{label}}</span> spot Price (€)</mat-label>
     <input matInput class="text-align-right" type="number" placeholder="0" formControlName="spotPrice">
   </mat-form-field>

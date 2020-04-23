@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CoinsService } from '../coins.service';
+import { Observable } from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
 
 interface Coin {
   id: string;
@@ -13,16 +15,25 @@ interface CoinGroup {
   name: string;
   coins: Coin[];
 }
+
+export const _filter = (opt: Coin[], value: string): Coin[] => {
+  if(typeof(value) === 'string') {
+    const filterValue = value.toLowerCase();
+    return opt.filter(item => item.name.toLowerCase().indexOf(filterValue) >= 0);
+  }
+  return value;
+};
+
 @Component({
   selector: 'app-prime-form',
   templateUrl: './prime-form.component.html',
   styleUrls: ['./prime-form.component.scss']
 })
 export class PrimeFormComponent implements OnInit {
-  @Input() label: string;
+  @Input() label: string | '';
   @Input()
   set price(price: string) {
-    this.form.get('spotPrice').setValue(price);
+    this.form.get('spotPrice')?.setValue(price);
   }
 
   form: FormGroup;
@@ -36,6 +47,8 @@ export class PrimeFormComponent implements OnInit {
   };
 
   coinGroups: CoinGroup[] = [];
+
+  coinGroupOptions: Observable<CoinGroup[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,6 +69,30 @@ export class PrimeFormComponent implements OnInit {
       console.log(data);
       this.coinGroups = data.coins;
     });
+
+    this.coinGroupOptions = this.form.get('type')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup(value))
+      );
+  }
+
+  displayFn(coin: Coin): string {
+    if (typeof(coin) !== "string") {
+      return coin.name;
+    }
+    return '';
+    // return coins[0]?.name;
+  }
+
+  private _filterGroup(value: string): CoinGroup[] {
+    if (value) {
+      return this.coinGroups
+        .map(group => ({name: group.name, coins: _filter(group.coins, value)}))
+        .filter(group => group.coins.length > 0);
+    }
+
+    return this.coinGroups;
   }
 
   calculate() {
@@ -75,7 +112,7 @@ export class PrimeFormComponent implements OnInit {
   }
 
   selectedCoinChanged(event: any) {
-    if (event.value === 'custom') {
+    if (event.option.value === 'custom') {
       return;
     }
     this.form.get('coinWeight')?.setValue(this.form.value.type.weight);

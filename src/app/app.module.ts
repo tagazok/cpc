@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 import { PrimeFormComponent } from './prime-form/prime-form.component';
@@ -40,6 +41,7 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     MatButtonModule,
     MatToolbarModule,
+    MatAutocompleteModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
