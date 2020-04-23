@@ -68,20 +68,20 @@ export class PrimeFormComponent implements OnInit {
     .subscribe((data: any) => {
       console.log(data);
       this.coinGroups = data.coins;
-    });
 
-    this.coinGroupOptions = this.form.get('type')!.valueChanges
+      this.coinGroupOptions = this.form.get('type')!.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filterGroup(value))
       );
+    });
   }
 
   displayFn(coin: Coin): string {
-    if (typeof(coin) !== "string") {
+    if (typeof(coin) !== 'string') {
       return coin.name;
     }
-    return '';
+    return coin;
     // return coins[0]?.name;
   }
 
@@ -96,11 +96,9 @@ export class PrimeFormComponent implements OnInit {
   }
 
   calculate() {
-    const formValues = this.form.value;
-    console.log(formValues);
-
-    this.results.premiumPercent = formValues.coinPrice / this.results.atSpotPrice * 100 - 100;
-    this.results.premium = formValues.coinPrice - this.results.atSpotPrice;
+    this.calculateGoldWeight();
+    this.calculateSpotPrice();
+    this.calculatePremium();
   }
 
   shouldDisableButton() {
@@ -108,18 +106,34 @@ export class PrimeFormComponent implements OnInit {
   }
 
   customCoinChanged(event: any) {
-    this.form.get('type')?.setValue('custom')
+    this.form.get('type')?.setValue('Custom coin')
   }
 
   selectedCoinChanged(event: any) {
-    if (event.option.value === 'custom') {
+    if (event.option.value === 'Custom coin') {
       return;
     }
     this.form.get('coinWeight')?.setValue(this.form.value.type.weight);
     this.form.get('coinPurity')?.setValue(this.form.value.type.titre);
 
+    this.calculateGoldWeight();
+    this.calculateSpotPrice();
+    }
+
+  calculateGoldWeight() {
     const formValues = this.form.value;
     this.results.goldWeight = formValues.coinWeight / 1000 * formValues.coinPurity;
+  }
+
+  calculateSpotPrice() {
+    const formValues = this.form.value;
     this.results.atSpotPrice = this.results.goldWeight * formValues.spotPrice / 31.1034768;
+  }
+  calculatePremium() {
+    const formValues = this.form.value;
+    console.log(formValues);
+
+    this.results.premiumPercent = formValues.coinPrice / this.results.atSpotPrice * 100 - 100;
+    this.results.premium = formValues.coinPrice - this.results.atSpotPrice;
   }
 }

@@ -7,6 +7,9 @@
            required
            [matAutocomplete]="autoGroup">
       <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)="selectedCoinChanged($event)" [displayWith]="displayFn">
+        <mat-option value="Custom Coin">
+          Custom coin
+        </mat-option>
         <mat-optgroup *ngFor="let group of coinGroupOptions |async" [label]="group.name">
           <mat-option *ngFor="let coin of group.coins" [value]="coin">
             {{coin.name}}
@@ -77,7 +80,7 @@
           {{results.premiumPercent  | number:'1.0-2'}} %
         </div>
         <div>
-          {{results.premiumPercent  | number:'1.0-2'}} €
+          {{results.premium  | number:'1.0-2'}} €
         </div>
       </div>
     </div>
