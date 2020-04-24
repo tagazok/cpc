@@ -6,6 +6,7 @@
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "description": "See real coins price and calculate premium",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
