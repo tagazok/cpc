@@ -14,6 +14,12 @@
             "name": "French",
             "coins": [
                 {
+                    "id": "5-francs-semeuse",
+                    "name": "5 Francs Semeuse",
+                    "weight": 12,
+                    "titre": 835
+                },
+                {
                     "id": "5-francs-ecu",
                     "name": "5 Francs Hercule",
                     "weight": 25,

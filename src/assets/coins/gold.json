@@ -62,6 +62,19 @@
                     "name": "Napoléon 20 Fr",
                     "weight": 6.4516,
                     "titre": 900
+                },
+                {
+                    "id": "40-francs-napoleon",
+                    "name": "Napoléon 40 Fr",
+                    "weight": 12.9032,
+                    "titre": 900,
+                    "diameter": "26 mm",
+                    "dates": {
+                        "start": 1792,
+                        "end": 1813
+                    },
+                    "quantity": 3303569,
+                    "facial_value": "40 Francs"
                 }
             ]
         },
