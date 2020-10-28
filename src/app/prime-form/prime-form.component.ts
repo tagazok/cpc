@@ -106,7 +106,7 @@ export class PrimeFormComponent implements OnInit {
   }
 
   customCoinChanged(event: any) {
-    this.form.get('type')?.setValue('Custom coin')
+    this.form.get('type')?.setValue('Custom coin');
   }
 
   selectedCoinChanged(event: any) {
@@ -135,5 +135,9 @@ export class PrimeFormComponent implements OnInit {
 
     this.results.premiumPercent = formValues.coinPrice / this.results.atSpotPrice * 100 - 100;
     this.results.premium = formValues.coinPrice - this.results.atSpotPrice;
+  }
+
+  clear() {
+    this.form.get('type')?.setValue('');
   }
 }
