@@ -34,6 +34,12 @@
             "name": "French",
             "coins": [
                 {
+                    "id": "5-francs-napoleon",
+                    "name": "Napoléon 5 Fr",
+                    "weight": 1.612,
+                    "titre": 900
+                },
+                {
                     "id": "10-francs-coq",
                     "name": "Coq 10 Fr",
                     "weight": 3.225,
@@ -75,6 +81,12 @@
                     },
                     "quantity": 3303569,
                     "facial_value": "40 Francs"
+                },
+                {
+                    "id": "50-francs-napoleon",
+                    "name": "Napoléon 50 Fr",
+                    "weight": 16.12,
+                    "titre": 900
                 }
             ]
         },
@@ -111,8 +123,14 @@
             ]
         },
         {
-            "name:": "Others",
+            "name": "Others",
             "coins": [
+                {
+                    "id": "1.5-pesos",
+                    "name": "2.5 Pesos",
+                    "weight": 2.0833,
+                    "titre": 900
+                },
                 {
                     "id": "1.5-pesos",
                     "name": "2.5 Pesos",
@@ -142,6 +160,18 @@
                     "name": "5 rubles Russia",
                     "weight": 4.3,
                     "titre": 900
+                },
+                {
+                    "id": "half-sovereign",
+                    "name": "Half Sovereign",
+                    "weight": 3.99,
+                    "titre": 916.7
+                },
+                {
+                    "id": "sovereign",
+                    "name": "Sovereign",
+                    "weight": 7.98,
+                    "titre": 916.7
                 }
             ]
         },
