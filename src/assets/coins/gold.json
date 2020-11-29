@@ -132,9 +132,21 @@
                     "titre": 900
                 },
                 {
-                    "id": "1.5-pesos",
-                    "name": "2.5 Pesos",
-                    "weight": 2.0833,
+                    "id": "5-pesos",
+                    "name": "5 Pesos",
+                    "weight": 4.16,
+                    "titre": 900
+                },
+                {
+                    "id": "10-pesos",
+                    "name": "10 Pesos",
+                    "weight": 8.33,
+                    "titre": 900
+                },
+                {
+                    "id": "5-pesos",
+                    "name": "50 Pesos",
+                    "weight": 41.67,
                     "titre": 900
                 },
                 {
