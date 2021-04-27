@@ -1,7 +1,7 @@
 {
     "coins": [
         {
-            "name": "Generic",
+            "name": "Bullions",
             "coins": [
                 {
                     "name": "1/25 oz",
@@ -211,54 +211,6 @@
                     "name": "Sovereign",
                     "weight": 7.98,
                     "titre": 916.7
-                }
-            ]
-        },
-        {
-            "name": "Bullion",
-            "coins": [
-                {
-                    "id": "1oz-buffalo",
-                    "name": "American Buffalo 1oz",
-                    "weight": 31.108,
-                    "titre": 999.9
-                },
-                {
-                    "name": "American Buffalo 1/2oz",
-                    "weight": 15.552,
-                    "titre": 999.9
-                },
-                {
-                    "name": "American Eagle 1oz",
-                    "weight": 33.930,
-                    "titre": 916.7
-                },
-                {
-                    "name": "American Eagle 1/2oz",
-                    "weight": 16.965,
-                    "titre": 916.7
-                },
-                {
-                    "id": "1oz-krugerrand",
-                    "name": "Krugerrand 1oz",
-                    "weight": 33.930,
-                    "titre": 916.7
-                },
-                {
-                    "name": "Krugerrand 1/2oz",
-                    "weight": 16.965,
-                    "titre": 916.7
-                },
-                {
-                    "id": "1oz-maple-leaf",
-                    "name": "Mapple Leaf 1oz",
-                    "weight": 31.10,
-                    "titre": 999.0
-                },
-                {
-                    "name": "Mapple Leaf 1/2oz",
-                    "weight": 15.55,
-                    "titre": 999.0
                 }
             ]
         },
