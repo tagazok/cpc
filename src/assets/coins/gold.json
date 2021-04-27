@@ -31,42 +31,53 @@
             ]
         },
         {
+            "name": "Austria",
+            "coins": [
+                {
+                    "id": "1-ducat",
+                    "name": "1 Ducat Austria",
+                    "weight": 3.49,
+                    "titre": 986
+                },
+                {
+                    "id": "4-ducat-francois-joseph",
+                    "name": "4 Ducat Austria François Joseph 1er",
+                    "weight": 14,
+                    "titre": 986
+                },
+                {
+                    "id": "20-crowns",
+                    "name": "20 crowns or françois joseph I",
+                    "weight": 6.78,
+                    "titre": 900
+                },
+                {
+                    "id": "100-crowns",
+                    "name": "100 couronnes or françois joseph I",
+                    "weight": 33.90,
+                    "titre": 900
+                }
+            ]
+        },
+        {
             "name": "French",
             "coins": [
                 {
-                    "id": "5-francs-napoleon",
-                    "name": "Napoléon 5 Fr",
+                    "id": "5-francs",
+                    "name": "5 Francs Napoléon/Coq/Génie/Céres",
                     "weight": 1.612,
                     "titre": 900
                 },
                 {
-                    "id": "10-francs-coq",
-                    "name": "Coq 10 Fr",
+                    "id": "10-francs",
+                    "name": "10 Francs Napoléon/Coq/Génie/Céres",
                     "weight": 3.225,
                     "titre": 900
                 },
                 {
-                    "id": "20-francs-coq",
-                    "name": "Coq 20 Fr",
+                    "id": "20-francs",
+                    "name": "20 Francs Napoléon/Coq/Génie/Céres",
                     "weight": 6.45161,
-                    "titre": 900
-                },
-                {
-                    "id": "5-francs-napoleon",
-                    "name": "Napoléon 5 Fr",
-                    "weight": 1.612,
-                    "titre": 900
-                },
-                {
-                    "id": "10-francs-napoleon",
-                    "name": "Napoléon 10 Fr",
-                    "weight": 3.225,
-                    "titre": 900
-                },
-                {
-                    "id": "20-francs-napoleon",
-                    "name": "Napoléon 20 Fr",
-                    "weight": 6.4516,
                     "titre": 900
                 },
                 {
@@ -86,6 +97,58 @@
                     "id": "50-francs-napoleon",
                     "name": "Napoléon 50 Fr",
                     "weight": 16.12,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "Hungary",
+            "coins": [
+                {
+                    "id": "10-crowns",
+                    "name": "10 Crowns",
+                    "weight": 3.38,
+                    "titre": 900
+                },
+                {
+                    "id": "20-crowns",
+                    "name": "20 Crowns",
+                    "weight": 6.73,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "Mexico",
+            "coins": [
+                {
+                    "id": "1.5-pesos",
+                    "name": "2.5 Pesos",
+                    "weight": 2.0833,
+                    "titre": 900
+                },
+                {
+                    "id": "5-pesos",
+                    "name": "5 Pesos",
+                    "weight": 4.16,
+                    "titre": 900
+                },
+                {
+                    "id": "10-pesos",
+                    "name": "10 Pesos",
+                    "weight": 8.33,
+                    "titre": 900
+                },
+                {
+                    "id": "20-pesos",
+                    "name": "20 Pesos",
+                    "weight": 16.66,
+                    "titre": 900
+                },
+                {
+                    "id": "50-pesos",
+                    "name": "50 Pesos",
+                    "weight": 41.67,
                     "titre": 900
                 }
             ]
@@ -125,42 +188,6 @@
         {
             "name": "Others",
             "coins": [
-                {
-                    "id": "1.5-pesos",
-                    "name": "2.5 Pesos",
-                    "weight": 2.0833,
-                    "titre": 900
-                },
-                {
-                    "id": "5-pesos",
-                    "name": "5 Pesos",
-                    "weight": 4.16,
-                    "titre": 900
-                },
-                {
-                    "id": "10-pesos",
-                    "name": "10 Pesos",
-                    "weight": 8.33,
-                    "titre": 900
-                },
-                {
-                    "id": "5-pesos",
-                    "name": "50 Pesos",
-                    "weight": 41.67,
-                    "titre": 900
-                },
-                {
-                    "id": "1-ducat",
-                    "name": "1 Ducat Austria",
-                    "weight": 3.49,
-                    "titre": 986
-                },
-                {
-                    "id": "4-ducat-francois-joseph",
-                    "name": "4 Ducat Austria François Joseph 1er",
-                    "weight": 14,
-                    "titre": 986
-                },
                 {
                     "id": "20-lire",
                     "name": "20 Lire Italy",
