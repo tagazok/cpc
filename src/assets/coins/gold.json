@@ -211,6 +211,12 @@
                     "name": "Sovereign",
                     "weight": 7.98,
                     "titre": 916.7
+                },
+                {
+                    "id": "double-sovereign",
+                    "name": "Double Sovereign",
+                    "weight": 15.976,
+                    "titre": 916.7
                 }
             ]
         },
