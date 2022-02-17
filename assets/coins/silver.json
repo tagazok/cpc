@@ -1,0 +1,78 @@
+{
+    "coins": [
+        {
+            "name": "Generic",
+            "coins": [
+                {
+                    "name": "Generic 1oz",
+                    "weight": 31.1040,
+                    "titre": 999.9
+                }
+            ]
+        },
+        {
+            "name": "French",
+            "coins": [
+                {
+                    "id": "5-francs-semeuse",
+                    "name": "5 Francs Semeuse",
+                    "weight": 12,
+                    "titre": 835
+                },
+                {
+                    "id": "5-francs-ecu",
+                    "name": "5 Francs Hercule",
+                    "weight": 25,
+                    "titre": 900
+                },
+                {
+                    "id": "10-francs-hercule",
+                    "name": "10 Francs Hercule",
+                    "weight": 25,
+                    "titre": 900
+                },
+                {
+                    "id": "50-francs-hercule",
+                    "name": "50 Francs Hercule",
+                    "weight": 30,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "International",
+            "coins": [
+                {
+                    "id": "mapple-leaf",
+                    "name": "Mapple Leaf 1oz",
+                    "weight": 31.1040,
+                    "titre": 999.9
+                },
+                {
+                    "id": "american-eagle",
+                    "name": "Silver Eagle 1oz",
+                    "weight": 31.1040,
+                    "titre": 999.9
+                },
+                {
+                    "id": "american-buffalo",
+                    "name": "American Buffalo 1oz",
+                    "weight": 31.1040,
+                    "titre": 999.9
+                },
+                {
+                    "id": "indian-head",
+                    "name": "Indian Head",
+                    "weight": 31.1040,
+                    "titre": 999.9
+                },
+                {
+                    "id": "philharmonique",
+                    "name": "Philharmonique 1oz",
+                    "weight": 31.1040,
+                    "titre": 999.9
+                }
+            ]
+        }
+    ]
+}

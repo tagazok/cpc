@@ -1,0 +1,285 @@
+{
+    "coins": [
+        {
+            "name": "Bullions",
+            "coins": [
+                {
+                    "name": "1/25 oz",
+                    "weight": 1.244139,
+                    "titre": 999
+                },
+                {
+                    "name": "1/10 oz",
+                    "weight": 3.11035,
+                    "titre": 999
+                },
+                {
+                    "name": "1/4 oz",
+                    "weight": 7.775869,
+                    "titre": 999
+                },
+                {
+                    "name": "1/2 oz",
+                    "weight": 15.5517,
+                    "titre": 999
+                },
+                {
+                    "name": "1 oz",
+                    "weight": 31.1035,
+                    "titre": 999
+                }
+            ]
+        },
+        {
+            "name": "Austria",
+            "coins": [
+                {
+                    "id": "1-ducat",
+                    "name": "1 Ducat Austria",
+                    "weight": 3.49,
+                    "titre": 986
+                },
+                {
+                    "id": "4-ducat-francois-joseph",
+                    "name": "4 Ducat Austria François Joseph 1er",
+                    "weight": 14,
+                    "titre": 986
+                },
+                {
+                    "id": "20-crowns",
+                    "name": "20 crowns or françois joseph I",
+                    "weight": 6.78,
+                    "titre": 900
+                },
+                {
+                    "id": "100-crowns",
+                    "name": "100 couronnes or françois joseph I",
+                    "weight": 33.90,
+                    "titre": 900
+                }
+            ]
+        },
+      {
+            "name": "Chinese",
+            "coins": [
+              {
+                    "id": "10-yuan",
+                    "name": "10 yuan 1g",
+                    "weight": 1,
+                    "titre": 999
+                },
+              {
+                    "id": "50-yuan",
+                    "name": "50 yuan 3g",
+                    "weight": 3,
+                    "titre": 999
+                },
+              {
+                    "id": "100-yuan",
+                    "name": "100 yuan 8g",
+                    "weight": 8,
+                    "titre": 999
+                },
+              {
+                    "id": "200-yuan",
+                    "name": "200 yuan 15g",
+                    "weight": 15,
+                    "titre": 999
+                },
+              {
+                    "id": "500-yuan",
+                    "name": "500 yuan 30g",
+                    "weight": 30,
+                    "titre": 999
+                }
+              ]
+      },
+        {
+            "name": "French",
+            "coins": [
+                {
+                    "id": "5-francs",
+                    "name": "5 Francs Napoléon/Coq/Génie/Céres",
+                    "weight": 1.612,
+                    "titre": 900
+                },
+                {
+                    "id": "10-francs",
+                    "name": "10 Francs Napoléon/Coq/Génie/Céres",
+                    "weight": 3.225,
+                    "titre": 900
+                },
+                {
+                    "id": "20-francs",
+                    "name": "20 Francs Napoléon/Coq/Génie/Céres",
+                    "weight": 6.45161,
+                    "titre": 900
+                },
+                {
+                    "id": "40-francs-napoleon",
+                    "name": "Napoléon 40 Fr",
+                    "weight": 12.9032,
+                    "titre": 900,
+                    "diameter": "26 mm",
+                    "dates": {
+                        "start": 1792,
+                        "end": 1813
+                    },
+                    "quantity": 3303569,
+                    "facial_value": "40 Francs"
+                },
+                {
+                    "id": "50-francs-napoleon",
+                    "name": "Napoléon 50 Fr",
+                    "weight": 16.12,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "Hungary",
+            "coins": [
+                {
+                    "id": "10-crowns",
+                    "name": "10 Crowns",
+                    "weight": 3.38,
+                    "titre": 900
+                },
+                {
+                    "id": "20-crowns",
+                    "name": "20 Crowns",
+                    "weight": 6.73,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "Mexico",
+            "coins": [
+               {
+                    "id": "2-pesos",
+                    "name": "2 Pesos",
+                    "weight": 1.67,
+                    "titre": 900
+                },
+                {
+                    "id": "2.5-pesos",
+                    "name": "2.5 Pesos",
+                    "weight": 2.0833,
+                    "titre": 900
+                },
+                {
+                    "id": "5-pesos",
+                    "name": "5 Pesos",
+                    "weight": 4.16,
+                    "titre": 900
+                },
+                {
+                    "id": "10-pesos",
+                    "name": "10 Pesos",
+                    "weight": 8.33,
+                    "titre": 900
+                },
+                {
+                    "id": "20-pesos",
+                    "name": "20 Pesos",
+                    "weight": 16.66,
+                    "titre": 900
+                },
+                {
+                    "id": "50-pesos",
+                    "name": "50 Pesos",
+                    "weight": 41.67,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "USA",
+            "coins": [
+                {
+                    "id": "5-usd-half-eagle",
+                    "name": "Half Eagle $5",
+                    "weight": 8.359,
+                    "titre": 900
+                },
+                {
+                    "id": "20-usd-double-eagle",
+                    "name": "Double Eagle $20",
+                    "weight": 33.437,
+                    "titre": 900
+                },
+                {
+                    "name": "Indian head $2.5",
+                    "weight": 4.18,
+                    "titre": 900
+                },
+                {
+                    "name": "Indian head $5",
+                    "weight": 8.359,
+                    "titre": 900
+                },
+                {
+                    "name": "Indian head $10",
+                    "weight": 16.7185,
+                    "titre": 900
+                }
+            ]
+        },
+        {
+            "name": "Others",
+            "coins": [
+                {
+                    "id": "20-lire",
+                    "name": "20 Lire Italy",
+                    "weight": 6.45,
+                    "titre": 900
+                },
+                {
+                    "id": "5-rubles-russia",
+                    "name": "5 rubles Russia",
+                    "weight": 4.3,
+                    "titre": 900
+                },
+                {
+                    "id": "half-sovereign",
+                    "name": "Half Sovereign",
+                    "weight": 3.99,
+                    "titre": 916.7
+                },
+                {
+                    "id": "sovereign",
+                    "name": "Sovereign",
+                    "weight": 7.98,
+                    "titre": 916.7
+                },
+                {
+                    "id": "double-sovereign",
+                    "name": "Double Sovereign",
+                    "weight": 15.976,
+                    "titre": 916.7
+                }
+            ]
+        },
+        {
+            "name": "Bars",
+            "coins": [
+                {
+                    "name": "5 grams",
+                    "weight": 5,
+                    "titre": 999.9
+                },
+                {
+                    "name": "10 grams",
+                    "weight": 10,
+                    "titre": 999.9
+                },
+                {
+                    "name": "20 grams",
+                    "weight": 20,
+                    "titre": 999.9
+                }
+            ]
+        }
+    ]
+}
