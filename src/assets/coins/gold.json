@@ -60,7 +60,7 @@
             ]
         },
       {
-            "name": "French",
+            "name": "Chinese",
             "coins": [
               {
                     "id": "10-yuan",
@@ -91,7 +91,7 @@
                     "name": "500 yuan 30g",
                     "weight": 30,
                     "titre": 999
-                },
+                }
               ]
       },
         {
