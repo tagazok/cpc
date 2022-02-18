@@ -4,10 +4,11 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="container">
-  <mat-card>
+  <mat-card class="forms">
     <mat-tab-group>
       <mat-tab label="Gold">
-          <app-prime-form [price]="prices?.ask?.gold" [label]="'gold'"></app-prime-form>
+        <app-prime-form [price]="prices?.ask?.gold" [label]="'gold'" (coinFromForm)="addtoBasket($event)">
+        </app-prime-form>
       </mat-tab>
       <mat-tab label="Silver">
         <app-prime-form [price]="prices?.ask?.silver" [label]="'silver'"></app-prime-form>
@@ -17,7 +18,18 @@
       1 once = 31.1034768 g
     </div>
   </mat-card>
+  <mat-card *ngIf="basket.length > 0" class="basket">
+    <div class="card-header">
+      <div class="title">Compare</div>
+    </div>
+    <div *ngFor="let item of basket" class="line">
+      <div class="name">{{item.name}}</div>
+      <div class="price">{{item.price}} €</div>
+      <div class="premium">{{item.premiumPercent | number:'1.0-2'}} %</div>
+    </div>
+  </mat-card>
 </div>
 <div class="footer">
-  Built with <span class="heart">❤</span> by the <a href="https://twitter.com/olivierleplus" target="_blank">Oivier Leplus</a>
+  Built with <span class="heart">❤</span> by the <a href="https://twitter.com/olivierleplus" target="_blank">Oivier
+    Leplus</a>
 </div>

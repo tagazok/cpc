@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CoinsService } from '../coins.service';
 import { Observable } from 'rxjs';
-import {startWith, map} from 'rxjs/operators';
+import { startWith, map } from 'rxjs/operators';
 
 interface Coin {
   id: string;
@@ -17,7 +17,7 @@ interface CoinGroup {
 }
 
 export const _filter = (opt: Coin[], value: string): Coin[] => {
-  if(typeof(value) === 'string') {
+  if (typeof (value) === 'string') {
     const filterValue = value.toLowerCase();
     return opt.filter(item => item.name.toLowerCase().indexOf(filterValue) >= 0);
   }
@@ -30,6 +30,9 @@ export const _filter = (opt: Coin[], value: string): Coin[] => {
   styleUrls: ['./prime-form.component.scss']
 })
 export class PrimeFormComponent implements OnInit {
+  @Output() coinFromForm: EventEmitter<any> = new EventEmitter();
+
+
   @Input() label: string | '';
   @Input()
   set price(price: string) {
@@ -65,20 +68,20 @@ export class PrimeFormComponent implements OnInit {
 
   ngOnInit() {
     this.coinsService.getCoinsList(this.label)
-    .subscribe((data: any) => {
-      console.log(data);
-      this.coinGroups = data.coins;
+      .subscribe((data: any) => {
+        console.log(data);
+        this.coinGroups = data.coins;
 
-      this.coinGroupOptions = this.form.get('type')!.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filterGroup(value))
-      );
-    });
+        this.coinGroupOptions = this.form.get('type')!.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filterGroup(value))
+          );
+      });
   }
 
   displayFn(coin: Coin): string {
-    if (typeof(coin) !== 'string') {
+    if (typeof (coin) !== 'string') {
       return coin.name;
     }
     return coin;
@@ -88,7 +91,7 @@ export class PrimeFormComponent implements OnInit {
   private _filterGroup(value: string): CoinGroup[] {
     if (value) {
       return this.coinGroups
-        .map(group => ({name: group.name, coins: _filter(group.coins, value)}))
+        .map(group => ({ name: group.name, coins: _filter(group.coins, value) }))
         .filter(group => group.coins.length > 0);
     }
 
@@ -118,7 +121,7 @@ export class PrimeFormComponent implements OnInit {
 
     this.calculateGoldWeight();
     this.calculateSpotPrice();
-    }
+  }
 
   calculateGoldWeight() {
     const formValues = this.form.value;
@@ -135,6 +138,16 @@ export class PrimeFormComponent implements OnInit {
 
     this.results.premiumPercent = formValues.coinPrice / this.results.atSpotPrice * 100 - 100;
     this.results.premium = formValues.coinPrice - this.results.atSpotPrice;
+  }
+
+  compare() {
+    this.calculate();
+    this.coinFromForm.emit({
+      name: this.form.value.type.name,
+      price: this.form.value.coinPrice,
+      spotPrice: this.results.atSpotPrice,
+      premiumPercent: this.results.premiumPercent
+    });
   }
 
   clear() {
