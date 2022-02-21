@@ -1,23 +1,23 @@
 {
   "configVersion": 1,
-  "timestamp": 1645138951730,
+  "timestamp": 1645467928801,
   "index": "cpc/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "cpc/favicon.ico",
         "cpc/index.html",
-        "cpc/main-es2015.6f6853b15632be2b85cc.js",
-        "cpc/main-es5.6f6853b15632be2b85cc.js",
+        "cpc/main.606bc9e458e159a9.js",
         "cpc/manifest.webmanifest",
-        "cpc/polyfills-es2015.1f913f16a2d346cc8bdc.js",
-        "cpc/polyfills-es5.f1044614286c4864d80f.js",
-        "cpc/runtime-es2015.0811dcefd377500b5b1a.js",
-        "cpc/runtime-es5.0811dcefd377500b5b1a.js",
-        "cpc/styles.45223b0fffa403703b9d.css"
+        "cpc/polyfills.150a37387d075c2f.js",
+        "cpc/runtime.19ebc3643a06040d.js",
+        "cpc/styles.b9ec8af78e0c4a63.css"
       ],
       "patterns": []
     },
@@ -25,6 +25,9 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "cpc/assets/coins/gold.json",
         "cpc/assets/coins/gold/10-francs-coq-back.jpg",
@@ -121,15 +124,12 @@
     "cpc/assets/icons/icon-72x72.png": "80071561d7d06a3b53d69979fc7c4f1263aad382",
     "cpc/assets/icons/icon-96x96.png": "90c6a04fcd936833009c783697f066aa75b02e20",
     "cpc/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "cpc/index.html": "93cf812a87c5c15ec6d06112e876a04af4fc25d5",
-    "cpc/main-es2015.6f6853b15632be2b85cc.js": "146c1fabfca7717671283d6516fffb0d5c222462",
-    "cpc/main-es5.6f6853b15632be2b85cc.js": "7cd8f58fbf541b2142b545eedf04337b5e52402f",
+    "cpc/index.html": "a028ba4268981fab38836f6bd827f81954c1d9aa",
+    "cpc/main.606bc9e458e159a9.js": "6085e97cd7599c80712390c918027287b3c1c8d3",
     "cpc/manifest.webmanifest": "5c937cce9ea61798e31a441ed81e6481327be82f",
-    "cpc/polyfills-es2015.1f913f16a2d346cc8bdc.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
-    "cpc/polyfills-es5.f1044614286c4864d80f.js": "e5472003c8575a8fca7583648df3905038faeb18",
-    "cpc/runtime-es2015.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "cpc/runtime-es5.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "cpc/styles.45223b0fffa403703b9d.css": "0ff97279e146f82190cecdf3add6faf5e858e9ee"
+    "cpc/polyfills.150a37387d075c2f.js": "359f4fb3ccb2667d58484cd5daac5ba83ee88be1",
+    "cpc/runtime.19ebc3643a06040d.js": "1b22cea0797fb26e0a69076c19ac28cb394389b0",
+    "cpc/styles.b9ec8af78e0c4a63.css": "e5bea272eed5ce36241f8831eed86f8f08a62424"
   },
   "navigationUrls": [
     {
@@ -148,5 +148,6 @@
       "positive": false,
       "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
     }
-  ]
+  ],
+  "navigationRequestStrategy": "performance"
 }
