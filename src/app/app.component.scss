@@ -7,6 +7,7 @@
     flex-direction: row;
     align-items: center;
 }
+
 .container {
     display: flex;
     // align-items: center;
@@ -18,7 +19,8 @@
     .forms {
         margin-bottom: 1em;
     }
-    .basket {
+
+    .history {
         margin-top: 1em;
     }
 }
@@ -32,26 +34,26 @@
             margin-bottom: 0;
             margin-right: 1em;
         }
-        
-        .basket {
+
+        .history {
             margin-top: 0;
             margin-left: 1em;
         }
     }
 }
-    
+
 
 mat-card {
     width: 500px;
     max-width: 100%;
 
-    
+
     .card-header {
         display: flex;
         flex-direction: row;
         padding: 0 16px 8px;
         color: #000000de;
-        font-family: Roboto,Helvetica Neue,sans-serif;
+        font-family: Roboto, Helvetica Neue, sans-serif;
         font-size: 14px;
         font-weight: 500;
         margin: 0 -16px 16px -16px;
@@ -74,7 +76,7 @@ mat-card {
     text-align: center;
 
     .heart {
-    color: red;
+        color: red;
     }
 
     a {
@@ -83,28 +85,50 @@ mat-card {
     }
 }
 
-.basket {
-    .line {
-        border-bottom: solid 1px #f7f7f7;
-        display: flex;
-        flex-direction: row;
-        padding: .5em 0;
+.history {
 
-        &:last-child {
-            border-bottom: none;
+    table {
+        width: 100%;
+        border-spacing: 0;
+
+        th {
+            border: none;
+            padding: 5px 0;
+            border-bottom: solid 1px #0000001f;
+            color: #0000008a;
+            font-size: 12px;
+            text-align: left;
+            font-weight: 400;
         }
 
-        .name {
-            flex: 1;
-        }
-
-        .price {
-
-        }
-
-        .premium {
-            padding-left: 1em;
-            font-weight: 500;
+        td {
+            border: none;
+            padding: 5px 0;
+            border-bottom: solid 1px #0000001f;
         }
     }
+
+    // .line {
+    //     border-bottom: solid 1px #f7f7f7;
+    //     display: flex;
+    //     flex-direction: row;
+    //     padding: .5em 0;
+
+    //     &:last-child {
+    //         border-bottom: none;
+    //     }
+
+    //     .name {
+    //         flex: 1;
+    //     }
+
+    //     .price {
+
+    //     }
+
+    //     .premium {
+    //         padding-left: 1em;
+    //         font-weight: 500;
+    //     }
+    // }
 }

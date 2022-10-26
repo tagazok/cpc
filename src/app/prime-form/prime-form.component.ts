@@ -102,6 +102,13 @@ export class PrimeFormComponent implements OnInit {
     this.calculateGoldWeight();
     this.calculateSpotPrice();
     this.calculatePremium();
+    this.coinFromForm.emit({
+      name: this.form.value.type.name,
+      price: this.form.value.coinPrice,
+      spotPrice: this.results.atSpotPrice,
+      premiumPercent: this.results.premiumPercent,
+      date: new Date()
+    });
   }
 
   shouldDisableButton() {
@@ -140,15 +147,16 @@ export class PrimeFormComponent implements OnInit {
     this.results.premium = formValues.coinPrice - this.results.atSpotPrice;
   }
 
-  compare() {
-    this.calculate();
-    this.coinFromForm.emit({
-      name: this.form.value.type.name,
-      price: this.form.value.coinPrice,
-      spotPrice: this.results.atSpotPrice,
-      premiumPercent: this.results.premiumPercent
-    });
-  }
+  // compare() {
+  //   this.calculate();
+  //   this.coinFromForm.emit({
+  //     name: this.form.value.type.name,
+  //     price: this.form.value.coinPrice,
+  //     spotPrice: this.results.atSpotPrice,
+  //     premiumPercent: this.results.premiumPercent,
+  //     date: new Date()
+  //   });
+  // }
 
   clear() {
     this.form.get('type')?.setValue('');

@@ -7,7 +7,7 @@
   <mat-card class="forms">
     <mat-tab-group>
       <mat-tab label="Gold">
-        <app-prime-form [price]="prices?.ask?.gold" [label]="'gold'" (coinFromForm)="addtoBasket($event)">
+        <app-prime-form [price]="prices?.ask?.gold" [label]="'gold'" (coinFromForm)="addToHistory($event)">
         </app-prime-form>
       </mat-tab>
       <mat-tab label="Silver">
@@ -18,15 +18,35 @@
       1 once = 31.1034768 g
     </div>
   </mat-card>
-  <mat-card *ngIf="basket.length > 0" class="basket">
+  <mat-card *ngIf="history.length > 0" class="history">
     <div class="card-header">
-      <div class="title">Compare</div>
+      <div class="title">History</div>
     </div>
-    <div *ngFor="let item of basket" class="line">
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Premium (%)</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of history">
+          <td class="name">{{item.name}}</td>
+          <td class="price">{{item.price}} €</td>
+          <td class="premium">{{item.premiumPercent | number:'1.0-2'}} %</td>
+          <td>
+            <button mat-icon-button aria-label="Delete history row" (click)="deleteFromHistory(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <div *ngFor="let item of history" class="line">
       <div class="name">{{item.name}}</div>
       <div class="price">{{item.price}} €</div>
       <div class="premium">{{item.premiumPercent | number:'1.0-2'}} %</div>
-    </div>
+    </div> -->
   </mat-card>
 </div>
 <div class="footer">
