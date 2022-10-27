@@ -195,6 +195,35 @@
             ]
         },
         {
+            "name": "United Kingdom",
+            "coins": [
+                {
+                    "id": "quarter-sovereign",
+                    "name": "Quarter Sovereign",
+                    "weight": 2,
+                    "titre": 916.7
+                },
+                {
+                    "id": "half-sovereign",
+                    "name": "Half Sovereign",
+                    "weight": 3.99,
+                    "titre": 916.7
+                },
+                {
+                    "id": "sovereign",
+                    "name": "Sovereign",
+                    "weight": 7.98,
+                    "titre": 916.7
+                },
+                {
+                    "id": "double-sovereign",
+                    "name": "Double Sovereign",
+                    "weight": 15.976,
+                    "titre": 916.7
+                }
+            ]
+        },
+        {
             "name": "USA",
             "coins": [
                 {
@@ -240,24 +269,6 @@
                     "name": "5 rubles Russia",
                     "weight": 4.3,
                     "titre": 900
-                },
-                {
-                    "id": "half-sovereign",
-                    "name": "Half Sovereign",
-                    "weight": 3.99,
-                    "titre": 916.7
-                },
-                {
-                    "id": "sovereign",
-                    "name": "Sovereign",
-                    "weight": 7.98,
-                    "titre": 916.7
-                },
-                {
-                    "id": "double-sovereign",
-                    "name": "Double Sovereign",
-                    "weight": 15.976,
-                    "titre": 916.7
                 }
             ]
         },
