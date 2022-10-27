@@ -131,7 +131,6 @@
       }
     }
   },
-  "defaultProject": "prime-calculator",
   "cli": {
     "analytics": "5db6fb8b-0fd2-495b-924a-f68cd2386bfc"
   }

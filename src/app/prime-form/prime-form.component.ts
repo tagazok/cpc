@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CoinsService } from '../coins.service';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -39,7 +39,7 @@ export class PrimeFormComponent implements OnInit {
     this.form.get('spotPrice')?.setValue(price);
   }
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   results = {
     goldWeight: 0,
@@ -54,7 +54,7 @@ export class PrimeFormComponent implements OnInit {
   coinGroupOptions: Observable<CoinGroup[]>;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private coinsService: CoinsService
   ) {
     this.form = this.formBuilder.group({
