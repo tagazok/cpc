@@ -15,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 import { PrimeFormComponent } from './prime-form/prime-form.component';
@@ -44,6 +45,7 @@ import { environment } from '../environments/environment';
     MatToolbarModule,
     MatAutocompleteModule,
     MatIconModule,
+    MatTooltipModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
