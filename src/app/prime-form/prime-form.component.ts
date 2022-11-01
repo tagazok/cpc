@@ -107,7 +107,7 @@ export class PrimeFormComponent implements OnInit {
       price: this.form.value.coinPrice,
       spotPrice: this.results.atSpotPrice,
       premiumPercent: this.results.premiumPercent,
-      date: new Date()
+      date: new Date().toDateString()
     });
   }
 

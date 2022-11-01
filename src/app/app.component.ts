@@ -16,12 +16,16 @@ export class AppComponent {
     private localStore: StorageService
   ) {
     this.getPrices();
+    this.getHistory();
   }
 
   async getPrices() {
     const response = await fetch('https://livegoldfeed.com/goldfeed/profile/frame/a4ab436762daa5ecf9c490fec32de84f/price?currency=eur');
     const data = await response.json();
     this.prices = data;
+  }
+
+  getHistory() {
     this.history = JSON.parse(this.localStore.getData("history") || "[]");
   }
 

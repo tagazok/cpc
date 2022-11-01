@@ -30,7 +30,7 @@
         <th></th>
       </thead>
       <tbody>
-        <tr *ngFor="let item of history">
+        <tr *ngFor="let item of history" matTooltip="{{item.date}}">
           <td class="name">{{item.name}}</td>
           <td class="price">{{item.price}} €</td>
           <td class="premium">{{item.premiumPercent | number:'1.0-2'}} %</td>
