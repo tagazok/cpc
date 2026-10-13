@@ -232,8 +232,9 @@ export class CoinPremiumApp extends LitElement {
         ${this.renderHistory()}
 
         <footer>
-          Spot data: goldprice.dev (free, keyless, ~15&nbsp;min delayed), proxied
-          locally. Prices in EUR per troy ounce. Not investment advice.
+          Spot data: fawazahmed0 currency-api via jsDelivr (free, keyless,
+          updates&nbsp;~daily). Prices in EUR per troy ounce. Not investment
+          advice.
         </footer>
       </main>
     `;
