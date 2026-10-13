@@ -1,27 +1,59 @@
-# PrimeCalculator
+# Coin Premium
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+A **static, private** tool to check how much a bullion coin's dealer price is
+above (or below) its melt / spot value — in **euros** and **percent over spot**.
+Live at **https://tagazok.github.io/cpc/**.
 
-## Development server
+- Live **gold & silver** spot from the keyless, CORS-enabled
+  [fawazahmed0 currency-api](https://github.com/fawazahmed0/exchange-api) on the
+  jsDelivr CDN — no API key, no server, fetched directly from the browser so it
+  works as a plain static site (GitHub Pages). It updates ~daily.
+- The spot fields are **pre-filled from the feed but fully editable** — overwrite
+  either one with the exact price from your own source (Kitco, your dealer, etc.).
+- A library of well-known coins plus **generic bullion by fraction** (1 oz, ½, ¼,
+  1/10, 1/20) and a **custom-coin** entry (weight + purity) so an unlisted coin is
+  never a dead end. Each carries its **fine metal content** so melt value is exact.
+- A **filterable combobox** for the coin picker — type to filter or arrow-key/click.
+- Price fields accept **both `.` and `,`** as the decimal separator.
+- **History in `localStorage`** (all local, nothing leaves your browser). Each
+  saved check stores the premium *at that moment* ("Then") and re-evaluates the
+  same coin & dealer price against the **current** spot every time you reload
+  ("Now").
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Run locally
 
-## Code scaffolding
+```bash
+npm install
+npm run dev        # http://localhost:5174/cpc/
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Production-style preview of the built static site:
 
-## Build
+```bash
+npm run build
+npm run preview    # http://localhost:4175/cpc/
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Deploy
 
-## Running unit tests
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the Vite
+app and publishes `dist/` to GitHub Pages at `/cpc/`. No secrets or external
+proxy are needed — the app is fully static.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How the math works
 
-## Running end-to-end tests
+- Spot is quoted in **EUR per troy ounce** of pure metal.
+- `melt = coin.fineOz × spot`
+- `premium € = dealerPrice − melt`
+- `premium % = premium € / melt × 100`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`fineOz` is the coin's **fine** (pure) metal content, not its gross weight — e.g.
+a Krugerrand is 33.93 g gross but exactly **1 oz fine** gold (the rest is copper).
+For a custom coin, `fineOz = weight(g) × purity(‰)/1000 ÷ 31.1034768`.
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- The feed updates ~daily; the editable spot field is your fallback for the exact
+  current price. The "as of DD/MM" label tells you the feed's date, and marks it
+  "stale" when that is not today.
+- Not investment advice.
