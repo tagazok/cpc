@@ -4,10 +4,11 @@ A **static, private** tool to check how much a bullion coin's dealer price is
 above (or below) its melt / spot value — in **euros** and **percent over spot**.
 Live at **https://tagazok.github.io/cpc/**.
 
-- Live **gold & silver** spot from the keyless, CORS-enabled
-  [fawazahmed0 currency-api](https://github.com/fawazahmed0/exchange-api) on the
-  jsDelivr CDN — no API key, no server, fetched directly from the browser so it
-  works as a plain static site (GitHub Pages). It updates ~daily.
+- Live **gold & silver** spot from [gold-api.com](https://gold-api.com) (real-time,
+  USD) converted to EUR at the ECB rate from
+  [Frankfurter](https://frankfurter.dev) — no API key, no server, both CORS-enabled
+  so the browser calls them directly and it works as a plain static site (GitHub
+  Pages). Checked against a dealer's price banner and a bank quote: within ~0.1%.
 - The spot fields are **pre-filled from the feed but fully editable** — overwrite
   either one with the exact price from your own source (Kitco, your dealer, etc.).
 - A library of well-known coins plus **generic bullion by fraction** (1 oz, ½, ¼,
@@ -53,7 +54,8 @@ For a custom coin, `fineOz = weight(g) × purity(‰)/1000 ÷ 31.1034768`.
 
 ## Notes
 
-- The feed updates ~daily; the editable spot field is your fallback for the exact
-  current price. The "as of DD/MM" label tells you the feed's date, and marks it
-  "stale" when that is not today.
+- The "as of HH:MM" label shows the quote time. It is marked "stale" when the quote
+  is over 2 hours old (e.g. weekends, markets closed). If the feed is down the
+  field stays empty for you to type — there is deliberately no lower-quality
+  fallback price.
 - Not investment advice.

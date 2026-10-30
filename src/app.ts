@@ -1,7 +1,7 @@
 import { LitElement, html, css, nothing } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { COINS, coinById, type Coin, type Metal } from "./coins";
-import { fetchGoldEurPerOz, fetchSilverEurPerOz } from "./spot";
+import { fetchSpots } from "./spot";
 import { pct, sign } from "./format";
 import {
   bookmarkletHref,
@@ -104,8 +104,10 @@ export class CoinPremiumApp extends LitElement {
   private async refreshSpot(): Promise<void> {
     this.goldState = "loading";
     this.silverState = "loading";
-    // Fetch both independently so one failing doesn't blank the other.
-    void fetchGoldEurPerOz().then(
+    // Both metals share one FX lookup but settle independently, so one
+    // failing doesn't blank the other.
+    const { gold, silver } = fetchSpots();
+    void gold.then(
       (r) => {
         this.goldSpot = r.eurPerOz.toFixed(2);
         this.goldState = "ok";
@@ -116,7 +118,7 @@ export class CoinPremiumApp extends LitElement {
         this.goldMeta = "fetch failed — type the price manually";
       },
     );
-    void fetchSilverEurPerOz().then(
+    void silver.then(
       (r) => {
         this.silverSpot = r.eurPerOz.toFixed(2);
         this.silverState = "ok";
@@ -287,9 +289,9 @@ export class CoinPremiumApp extends LitElement {
         ${this.renderBookmarklet()}
 
         <footer>
-          Spot data: fawazahmed0 currency-api via jsDelivr (free, keyless,
-          updates&nbsp;~daily). Prices in EUR per troy ounce. Not investment
-          advice.
+          Spot data: gold-api.com (real-time USD) converted to EUR at the ECB
+          rate via Frankfurter. Both free and keyless. Prices in EUR per troy
+          ounce. Not investment advice.
         </footer>
       </main>
     `;
@@ -1223,13 +1225,15 @@ function fmtDate(ts: number): string {
 }
 function metaLabel(computedAt: string | null, stale: boolean): string {
   if (!computedAt) return stale ? "stale" : "live";
-  // The feed carries a date (updates ~daily). Show it as DD/MM; mark stale when
-  // it is not today's date.
   const d = new Date(computedAt);
-  const label = Number.isNaN(d.getTime())
-    ? computedAt
-    : d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit" });
-  return `${stale ? "stale · " : ""}as of ${label}`;
+  if (Number.isNaN(d.getTime())) return stale ? "stale" : "live";
+  // Quote time as HH:MM; add DD/MM when it is not today (market closed).
+  const time = d.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  const sameDay = d.toDateString() === new Date().toDateString();
+  const when = sameDay
+    ? time
+    : `${d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit" })} ${time}`;
+  return `${stale ? "stale · " : ""}as of ${when}`;
 }
 
 declare global {
