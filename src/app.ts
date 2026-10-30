@@ -3,6 +3,13 @@ import { customElement, state } from "lit/decorators.js";
 import { COINS, coinById, type Coin, type Metal } from "./coins";
 import { fetchGoldEurPerOz, fetchSilverEurPerOz } from "./spot";
 import {
+  bookmarkletHref,
+  matchLibraryCoin,
+  parseDecimal,
+  readImportFromUrl,
+  type ImportedCoin,
+} from "./importer";
+import {
   computePremium,
   addHistoryEntry,
   loadHistory,
@@ -47,9 +54,50 @@ export class CoinPremiumApp extends LitElement {
 
   @state() private history: HistoryEntry[] = loadHistory();
 
+  // Coin imported from a dealer page via the bookmarklet (or a prefill link).
+  @state() private imported: ImportedCoin | null = null;
+  /** Library coin id the import matched, or CUSTOM_ID when filled as custom. */
+  @state() private importedCoinId: string | null = null;
+  @state() private bookmarkletCopied = false;
+
   connectedCallback(): void {
     super.connectedCallback();
+    const imp = readImportFromUrl(location.search);
+    if (imp) {
+      this.applyImport(imp);
+      // Drop the long query string so a reload / bookmark is a clean app URL.
+      history.replaceState(null, "", location.pathname);
+    }
     void this.refreshSpot();
+  }
+
+  /** Fill the form from an imported coin: library match first, else custom. */
+  private applyImport(imp: ImportedCoin): void {
+    this.imported = imp;
+    if (imp.priceEur) this.askEur = fieldNum(imp.priceEur, 2);
+    const match = matchLibraryCoin(imp);
+    if (match) {
+      this.coinId = match.id;
+      this.importedCoinId = match.id;
+      return;
+    }
+    this.coinId = CUSTOM_ID;
+    this.importedCoinId = CUSTOM_ID;
+    this.customMetal = imp.metal ?? "gold";
+    this.customName = imp.name;
+    if (imp.grossGrams) {
+      this.customGrams = fieldNum(imp.grossGrams, 4);
+      this.customPermille = imp.permille ? fieldNum(imp.permille, 1) : "";
+    } else if (imp.fineGrams) {
+      // Only the fine weight is known: treat it as pure metal.
+      this.customGrams = fieldNum(imp.fineGrams, 4);
+      this.customPermille = "1000";
+    }
+  }
+
+  /** True while the form still shows the imported coin. */
+  private get importActive(): boolean {
+    return !!this.imported && this.coinId === this.importedCoinId;
   }
 
   private async refreshSpot(): Promise<void> {
@@ -125,7 +173,10 @@ export class CoinPremiumApp extends LitElement {
       id: newId(),
       ts: Date.now(),
       coinId: coin.id,
-      coinName: coin.name,
+      // Keep the dealer's product name for imports (e.g. "1/4 oz panthère…"
+      // rather than the generic "Gold bullion — 1/4 oz").
+      coinName:
+        this.importActive && this.imported ? this.imported.name : coin.name,
       metal: coin.metal,
       fineOz: coin.fineOz,
       askEur: ask,
@@ -161,6 +212,7 @@ export class CoinPremiumApp extends LitElement {
 
         <section class="card calc">
           <h2>Check a coin</h2>
+          ${this.importActive ? this.renderImportBanner() : nothing}
           <div class="row">
             ${this.renderCoinCombo()}
             <label>
@@ -230,6 +282,8 @@ export class CoinPremiumApp extends LitElement {
         </section>
 
         ${this.renderHistory()}
+
+        ${this.renderBookmarklet()}
 
         <footer>
           Spot data: fawazahmed0 currency-api via jsDelivr (free, keyless,
@@ -361,6 +415,140 @@ export class CoinPremiumApp extends LitElement {
             : nothing}
         </div>
       </label>
+    `;
+  }
+
+  // ——— Dealer-page import ———
+
+  private renderImportBanner() {
+    const imp = this.imported!;
+    const matched = this.importedCoinId !== CUSTOM_ID;
+    const missing: string[] = [];
+    if (!imp.metal) missing.push("metal (assumed gold)");
+    if (!imp.fineGrams && !imp.grossGrams) missing.push("weight");
+    if (!imp.permille && !matched) missing.push("purity");
+    if (!imp.priceEur) missing.push("price");
+    let host = "dealer page";
+    try {
+      if (imp.sourceUrl) host = new URL(imp.sourceUrl).hostname.replace(/^www\./, "");
+    } catch {
+      /* keep default */
+    }
+    return html`
+      <div class="import-banner" role="status">
+        <div class="import-head">
+          <span>
+            Imported from
+            ${imp.sourceUrl
+              ? html`<a href=${imp.sourceUrl} target="_blank" rel="noopener noreferrer">${host}</a>`
+              : host}
+          </span>
+          <button
+            class="icon"
+            aria-label="Dismiss import"
+            title="Dismiss"
+            @click=${() => (this.imported = null)}
+          >
+            ✕
+          </button>
+        </div>
+        <strong class="import-name">${imp.name}</strong>
+        <div class="import-facts">
+          ${imp.metal
+            ? html`<span class="pill ${imp.metal}">${imp.metal}</span>`
+            : nothing}
+          ${imp.grossGrams ? html`<span>${fieldNum(imp.grossGrams, 2)} g gross</span>` : nothing}
+          ${imp.fineGrams ? html`<span>${fieldNum(imp.fineGrams, 3)} g fine</span>` : nothing}
+          ${imp.permille ? html`<span>${fieldNum(imp.permille, 1)} ‰</span>` : nothing}
+          ${imp.priceEur ? html`<span>${eur(imp.priceEur)}</span>` : nothing}
+        </div>
+        <p class="import-match">
+          ${matched
+            ? html`Matched to <strong>${this.coinLabel(this.coin)}</strong> by fine content.`
+            : html`Not in the library — filled in as a custom coin.`}
+          ${missing.length
+            ? html`<span class="import-warn">Not found on the page: ${missing.join(", ")}. Check the fields below.</span>`
+            : nothing}
+        </p>
+      </div>
+    `;
+  }
+
+  private get appUrl(): string {
+    return location.origin + location.pathname.replace(/index\.html$/, "");
+  }
+
+  private async copyBookmarklet(): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(bookmarkletHref(this.appUrl));
+      this.bookmarkletCopied = true;
+      window.setTimeout(() => (this.bookmarkletCopied = false), 2000);
+    } catch {
+      prompt("Copy the bookmarklet code:", bookmarkletHref(this.appUrl));
+    }
+  }
+
+  private get bmDialog(): HTMLDialogElement | null {
+    return this.renderRoot.querySelector("dialog.bm-dialog");
+  }
+
+  private renderBookmarklet() {
+    return html`
+      <div class="bm-trigger-row">
+        <button
+          class="bm-trigger"
+          aria-haspopup="dialog"
+          @click=${() => this.bmDialog?.showModal()}
+        >
+          🪙 Import from acheter-or-argent.fr
+        </button>
+      </div>
+      <dialog
+        class="bm-dialog"
+        aria-labelledby="bm-title"
+        @click=${(e: MouseEvent) => {
+          // A click on the backdrop lands on the <dialog> itself.
+          if (e.target === e.currentTarget) this.bmDialog?.close();
+        }}
+      >
+        <div class="bm-head">
+          <h2 id="bm-title">Import from acheter-or-argent.fr</h2>
+          <button
+            class="icon"
+            aria-label="Close"
+            @click=${() => this.bmDialog?.close()}
+          >
+            ✕
+          </button>
+        </div>
+        <p class="hint">
+          Drag this button to your bookmarks bar. Then, on any coin page of
+          acheter-or-argent.fr, click the bookmark: it reads the metal, weight,
+          purity and price from the page and opens this app with everything
+          filled in.
+        </p>
+        <div class="bm-row">
+          <a
+            class="bm-link"
+            href=${bookmarkletHref(this.appUrl)}
+            title="Drag me to your bookmarks bar"
+            @click=${(e: Event) => {
+              e.preventDefault();
+              alert(
+                "Drag this button to your bookmarks bar, then click it on a coin page of acheter-or-argent.fr.",
+              );
+            }}
+            >🪙 Coin Premium</a
+          >
+          <button class="ghost" @click=${this.copyBookmarklet}>
+            ${this.bookmarkletCopied ? "Copied ✓" : "Copy code"}
+          </button>
+        </div>
+        <p class="hint">
+          Can't drag (Safari, mobile)? Use “Copy code”, create any bookmark,
+          and paste the code as its URL.
+        </p>
+      </dialog>
     `;
   }
 
@@ -769,6 +957,103 @@ export class CoinPremiumApp extends LitElement {
     .custom-box .hint {
       margin-top: 10px;
     }
+    .import-banner {
+      background: var(--card-2);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 0 0 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .import-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .import-head a {
+      color: var(--accent);
+    }
+    .import-name {
+      font-size: 0.98rem;
+    }
+    .import-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .import-match {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .import-warn {
+      display: block;
+      color: var(--neg);
+      margin-top: 4px;
+    }
+    .bm-trigger-row {
+      text-align: center;
+    }
+    .bm-trigger {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 4px 8px;
+    }
+    .bm-trigger:hover,
+    .bm-trigger:focus-visible {
+      color: var(--accent);
+    }
+    .bm-dialog {
+      box-sizing: border-box;
+      width: min(520px, calc(100vw - 32px));
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    .bm-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .bm-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .bm-head h2 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    .bm-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 12px 0 4px;
+    }
+    .bm-link {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #15171c;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: grab;
+    }
     .pill {
       text-transform: uppercase;
       font-size: 0.68rem;
@@ -910,28 +1195,11 @@ export class CoinPremiumApp extends LitElement {
 
 // ——— formatting helpers ———
 
-/**
- * Parse a user-typed amount accepting BOTH `.` and `,` as decimal separator,
- * and tolerating thousands separators. Returns NaN for empty/garbage.
- *   "2650,50" -> 2650.5   "2 650.50" -> 2650.5   "1.234,56" -> 1234.56
- */
-function parseDecimal(raw: string): number {
-  if (!raw) return NaN;
-  let s = raw.trim().replace(/\s/g, "");
-  const lastDot = s.lastIndexOf(".");
-  const lastComma = s.lastIndexOf(",");
-  // Whichever separator comes LAST is the decimal one; the other is grouping.
-  if (lastDot !== -1 && lastComma !== -1) {
-    if (lastComma > lastDot) {
-      s = s.replace(/\./g, "").replace(",", "."); // 1.234,56
-    } else {
-      s = s.replace(/,/g, ""); // 1,234.56
-    }
-  } else if (lastComma !== -1) {
-    s = s.replace(",", "."); // 2650,50  (single comma = decimal)
-  }
-  const n = Number(s);
-  return Number.isFinite(n) ? n : NaN;
+// parseDecimal (accepts both `.` and `,` decimals) lives in ./importer.
+
+/** Format a number for an input field, French style (comma decimal). */
+function fieldNum(n: number, digits: number): string {
+  return String(Number(n.toFixed(digits))).replace(".", ",");
 }
 
 const eurFmt = new Intl.NumberFormat("fr-FR", {
