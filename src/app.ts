@@ -2,6 +2,7 @@ import { LitElement, html, css, nothing } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { COINS, coinById, type Coin, type Metal } from "./coins";
 import { fetchGoldEurPerOz, fetchSilverEurPerOz } from "./spot";
+import { pct, sign } from "./format";
 import {
   bookmarkletHref,
   matchLibraryCoin,
@@ -267,7 +268,7 @@ export class CoinPremiumApp extends LitElement {
                   <div class="metric big">
                     <span class="k">Over spot</span>
                     <span class="v ${calc.premiumPct >= 0 ? "pos" : "neg"}">
-                      ${sign(calc.premiumPct)}${calc.premiumPct.toFixed(1)}%
+                      ${pct(calc.premiumPct)}
                     </span>
                   </div>
                 </div>
@@ -710,12 +711,12 @@ export class CoinPremiumApp extends LitElement {
         </span>
         <span>${eur(e.askEur)}</span>
         <span class="${e.premiumPctAtLog >= 0 ? "pos" : "neg"}">
-          ${sign(e.premiumPctAtLog)}${e.premiumPctAtLog.toFixed(1)}%
+          ${pct(e.premiumPctAtLog)}
           <small>${sign(e.premiumEurAtLog)}${eur(Math.abs(e.premiumEurAtLog))}</small>
         </span>
         <span class="${now ? (now.premiumPct >= 0 ? "pos" : "neg") : ""}">
           ${now
-            ? html`${sign(now.premiumPct)}${now.premiumPct.toFixed(1)}%
+            ? html`${pct(now.premiumPct)}
                 <small>${sign(now.premiumEur)}${eur(Math.abs(now.premiumEur))}</small>`
             : html`<small>no spot</small>`}
         </span>
@@ -1210,9 +1211,7 @@ const eurFmt = new Intl.NumberFormat("fr-FR", {
 function eur(n: number): string {
   return eurFmt.format(n);
 }
-function sign(n: number): string {
-  return n >= 0 ? "+" : "−";
-}
+
 function fmtDate(ts: number): string {
   return new Date(ts).toLocaleString("fr-FR", {
     day: "2-digit",
